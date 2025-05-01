@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductoService extends BaseService<Producto, Long>{
+    private ProductoRepository productoRepository;
     public ProductoService(ProductoRepository productoRepository) {
 
         super (productoRepository);}
