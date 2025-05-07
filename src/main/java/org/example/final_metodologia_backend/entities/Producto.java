@@ -1,24 +1,15 @@
 package org.example.final_metodologia_backend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import org.example.final_metodologia_backend.entities.enums.SexoProducto;
 import org.example.final_metodologia_backend.entities.enums.TipoProducto;
 
-import java.io.Serializable;
-
 @Entity
 @Table(name="productos")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Producto extends Base{
 
     @Column(name = "nombre")
@@ -28,9 +19,17 @@ public class Producto extends Base{
     private String categoria;
 
     @Column(name = "tipo")
-    private Enum<TipoProducto> tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoProducto tipo;
 
     @Column(name = "sexo_producto")
-    private Enum<SexoProducto> sexoProducto;
+    @Enumerated(EnumType.STRING)
+    private SexoProducto sexoProducto;
 
+    public Producto(String nombre, String categoria, TipoProducto tipo, SexoProducto sexoProducto) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.tipo = tipo;
+        this.sexoProducto = sexoProducto;
+    }
 }

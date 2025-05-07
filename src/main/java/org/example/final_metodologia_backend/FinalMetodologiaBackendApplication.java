@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FinalMetodologiaBackendApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(FinalMetodologiaBackendApplication.class, args);
     }
-
 }
