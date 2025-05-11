@@ -12,11 +12,16 @@ import org.example.final_metodologia_backend.entities.enums.Rol;
 @Getter
 @Setter
 public class Usuario extends Base{
+
+    @ManyToOne
+    @JoinColumn(name="direccion_id")
+    private Direccion direccion;
+
     @Column
     private String nombre;
 
     @Column
-    private String contrasena;
+    private String contrasenia;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -26,14 +31,11 @@ public class Usuario extends Base{
     private String email;
 
     @Column
-    private String direccion;
+    private Long dni;
 
-    @Column
-    private Number dni;
-
-    public Usuario(String nombre, String contrasena, Rol rol, String email, String direccion, Number dni) {
+    public Usuario(String nombre, String contrasenia, Rol rol, String email, Direccion direccion, Long dni) {
         this.nombre = nombre;
-        this.contrasena = contrasena;
+        this.contrasenia = contrasenia;
         this.rol = rol;
         this.email = email;
         this.direccion = direccion;

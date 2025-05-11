@@ -1,8 +1,6 @@
 package org.example.final_metodologia_backend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,12 +17,13 @@ public class Precio extends Base{
     @Column(name="precio_venta")
     private Float precioVenta;
 
-    @Column(name="id_detalle")
+    @Column(name="detalle_id")
     // Clave foránea
     private Detalle idDetalle;
 
-    @Column
-    // Clave foránea
+    //¿Es ManyToOne?
+    @ManyToOne
+    @JoinColumn(name="descuento_id")
     private Descuento descuento;
 
     public Precio(Float precioCompra, Float precioVenta, Detalle idDetalle, Descuento descuento) {

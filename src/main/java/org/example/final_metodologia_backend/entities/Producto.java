@@ -15,8 +15,9 @@ public class Producto extends Base{
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "categoria")
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     @Column(name = "tipo")
     @Enumerated(EnumType.STRING)
@@ -26,7 +27,7 @@ public class Producto extends Base{
     @Enumerated(EnumType.STRING)
     private SexoProducto sexoProducto;
 
-    public Producto(String nombre, String categoria, TipoProducto tipo, SexoProducto sexoProducto) {
+    public Producto(String nombre, Categoria categoria, TipoProducto tipo, SexoProducto sexoProducto) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.tipo = tipo;

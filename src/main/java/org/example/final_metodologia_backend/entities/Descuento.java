@@ -19,6 +19,9 @@ public class Descuento extends Base{
     @Column
     private String fechaFin;
 
+    @Column
+    private Double porcentaje;
+
     public Descuento(String fechaInicio, String fechaFin) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;

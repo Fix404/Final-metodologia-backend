@@ -1,8 +1,6 @@
 package org.example.final_metodologia_backend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,22 +11,23 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Direccion extends Base{
-    @Column
-    private String localidad;
+    @ManyToOne
+    @JoinColumn (name = "localidad_id")
+    private Localidad localidad;
 
     @Column
-    private String pais;
+    private String calle;
 
     @Column
     private String provincia;
 
     @Column
-    private String departamento;
+    private Integer altura;
 
-    public Direccion(String localidad, String pais, String provincia, String departamento) {
+    public Direccion(Localidad localidad, String calle, String provincia, Integer altura) {
         this.localidad = localidad;
-        this.pais = pais;
+        this.calle = calle;
         this.provincia = provincia;
-        this.departamento = departamento;
+        this.altura = altura;
     }
 }

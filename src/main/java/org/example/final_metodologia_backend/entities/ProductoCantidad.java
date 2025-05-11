@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Producto_Cantidad extends Base{
+public class ProductoCantidad extends Base{
 
     @OneToOne
     @JoinColumn(name = "producto_id")
@@ -16,7 +16,7 @@ public class Producto_Cantidad extends Base{
     @Column
     private Integer cantidad;
 
-    public Producto_Cantidad(Producto producto, Integer cantidad) {
+    public ProductoCantidad(Producto producto, Integer cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
     }

@@ -12,12 +12,16 @@ import org.example.final_metodologia_backend.entities.enums.Movimiento;
 @Getter
 @Setter
 public class OrdenCompra extends Base{
-    @Column
-    // Clave foránea
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "producto_cantidad_id")
+    private ProductoCantidad productoCantidad;
+
     @Column
-    private String fecha;
+    private String fecha; //PODRIA SER DATE?
 
     @Column(name="precio_total")
     private float precioTotal;
@@ -26,10 +30,11 @@ public class OrdenCompra extends Base{
     @Enumerated(EnumType.STRING)
     private Movimiento movimiento;
 
-    public OrdenCompra(Usuario usuario, String fecha, float precioTotal, Movimiento movimiento) {
+    public OrdenCompra(Usuario usuario, String fecha,ProductoCantidad productoCantidad, float precioTotal, Movimiento movimiento) {
         this.usuario = usuario;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
         this.movimiento = movimiento;
+        this.productoCantidad = productoCantidad;
     }
 }
