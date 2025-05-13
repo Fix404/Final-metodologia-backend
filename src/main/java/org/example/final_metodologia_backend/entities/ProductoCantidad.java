@@ -10,14 +10,14 @@ import lombok.*;
 public class ProductoCantidad extends Base{
 
     @OneToOne
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @JoinColumn(name = "detalle_id")
+    private Detalle detalle;
 
     @Column
     private Integer cantidad;
 
-    public ProductoCantidad(Producto producto, Integer cantidad) {
-        this.producto = producto;
+    public ProductoCantidad(Detalle detalle, Integer cantidad) {
+        this.detalle = detalle;
         this.cantidad = cantidad;
     }
 }

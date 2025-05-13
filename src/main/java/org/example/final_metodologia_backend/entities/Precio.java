@@ -12,24 +12,13 @@ import lombok.Setter;
 @Setter
 public class Precio extends Base{
     @Column(name="precio_compra")
-    private Float precioCompra;
+    private Double precioCompra;
 
     @Column(name="precio_venta")
-    private Float precioVenta;
+    private Double precioVenta;
 
-    @Column(name="detalle_id")
-    // Clave foránea
-    private Detalle idDetalle;
-
-    //¿Es ManyToOne?
-    @ManyToOne
-    @JoinColumn(name="descuento_id")
-    private Descuento descuento;
-
-    public Precio(Float precioCompra, Float precioVenta, Detalle idDetalle, Descuento descuento) {
+    public Precio(Double precioCompra, Double precioVenta) {
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
-        this.idDetalle = idDetalle;
-        this.descuento = descuento;
     }
 }

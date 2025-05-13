@@ -19,13 +19,8 @@ public class Imagen extends Base{
     @Column
     private String altDescripcion;
 
-    @Column(name="id_detalle")
-    // Clave foránea
-    private Detalle idDetalle;
-
-    public Imagen(String url, String altDescripcion, Detalle idDetalle) {
+    public Imagen(String url, String altDescripcion) {
         this.url = url;
         this.altDescripcion = altDescripcion;
-        this.idDetalle = idDetalle;
     }
 }

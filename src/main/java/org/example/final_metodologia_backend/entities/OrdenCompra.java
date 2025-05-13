@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.final_metodologia_backend.entities.enums.Movimiento;
 
+import java.util.Date;
+
 @Entity
 @Table(name="orden_compra")
 @NoArgsConstructor
@@ -21,7 +23,7 @@ public class OrdenCompra extends Base{
     private ProductoCantidad productoCantidad;
 
     @Column
-    private String fecha; //PODRIA SER DATE?
+    private Date fecha;
 
     @Column(name="precio_total")
     private float precioTotal;
@@ -30,7 +32,7 @@ public class OrdenCompra extends Base{
     @Enumerated(EnumType.STRING)
     private Movimiento movimiento;
 
-    public OrdenCompra(Usuario usuario, String fecha,ProductoCantidad productoCantidad, float precioTotal, Movimiento movimiento) {
+    public OrdenCompra(Usuario usuario, Date fecha, ProductoCantidad productoCantidad, float precioTotal, Movimiento movimiento) {
         this.usuario = usuario;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
