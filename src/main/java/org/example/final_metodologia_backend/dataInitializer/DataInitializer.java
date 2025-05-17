@@ -23,7 +23,7 @@ public class DataInitializer implements CommandLineRunner {
         // Comprobar si ya hay datos para evitar duplicados
         try{
             if (productoRepository.count() == 0) {
-                Producto producto = new Producto("Crocs", null, TipoProducto.CALZADO, SexoProducto.UNISEX);
+                Producto producto = new Producto("Producto 1", "Un nuevo producto", null, null,null , null, SexoProducto.UNISEX);
                 productoRepository.save(producto);
                 System.out.println("Producto guardado con éxito!");
             } else {
