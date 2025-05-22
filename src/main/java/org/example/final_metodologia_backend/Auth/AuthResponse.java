@@ -1,4 +1,4 @@
-package Auth;
+package org.example.final_metodologia_backend.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
-    String nombre;
-    String contrasenia;
+@AllArgsConstructor
+public class AuthResponse {
+
+    String token;
 }

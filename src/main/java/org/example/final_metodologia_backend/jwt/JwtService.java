@@ -1,4 +1,4 @@
-package jwt;
+package org.example.final_metodologia_backend.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

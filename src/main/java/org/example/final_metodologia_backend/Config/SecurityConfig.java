@@ -1,6 +1,6 @@
-package Config;
+package org.example.final_metodologia_backend.Config;
 
-import jwt.JwtAutenticationFilter;
+import org.example.final_metodologia_backend.jwt.JwtAutenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package Config;
+package org.example.final_metodologia_backend.Config;
 
 import lombok.RequiredArgsConstructor;
 import org.example.final_metodologia_backend.repositories.UsuarioRepository;

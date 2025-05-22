@@ -1,6 +1,6 @@
-package Auth;
+package org.example.final_metodologia_backend.Auth;
 
-import jwt.JwtService;
+import org.example.final_metodologia_backend.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.example.final_metodologia_backend.entities.Usuario;
 import org.example.final_metodologia_backend.entities.enums.Rol;

@@ -1,4 +1,4 @@
-package Auth;
+package org.example.final_metodologia_backend.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
