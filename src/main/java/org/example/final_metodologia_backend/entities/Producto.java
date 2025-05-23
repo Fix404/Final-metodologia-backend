@@ -18,11 +18,11 @@ public class Producto extends Base{
     @Column
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne // ANTES ONETOMANY
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "imagen_id")
     private Imagen imagen;
 

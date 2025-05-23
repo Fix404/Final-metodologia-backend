@@ -19,6 +19,8 @@ public class JwtService {
 
     private static final String SECRET_KEY="12321567655434578987654562343265473";
 
+    //private static final String SECRET_KEY = "Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MDEyMw=="; // Clave Base64 válida
+
     public String getToken(UserDetails usuario) {
         return getToken(new HashMap<>(), usuario);
     }
@@ -30,6 +32,7 @@ public class JwtService {
             .setClaims(extraClaims)
             .setSubject(usuario.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
+            //Tiempo que dura el token, en este caso es de 24 minutos
             .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
             .signWith(getKey(), SignatureAlgorithm.HS256)
             .compact();
@@ -54,7 +57,7 @@ public class JwtService {
                 .parserBuilder()
                 .setSigningKey(getKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token) //Antes era parseClaimsJwt ahora es Jws
                 .getBody();
     }
 

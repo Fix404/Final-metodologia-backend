@@ -7,6 +7,8 @@ import org.example.final_metodologia_backend.entities.enums.Rol;
 import org.example.final_metodologia_backend.repositories.UsuarioRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class AuthService {
     private final UsuarioRepository usuarioRepository;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder passwordEncoder;
 
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNombre(), request.getContrasenia()));
@@ -30,7 +33,7 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         Usuario usuario = Usuario.builder().
                 nombre(request.getNombre())
-                .contrasenia(request.getContrasenia())
+                .contrasenia(passwordEncoder.encode(request.getContrasenia()))
                 .direccion(request.getDireccion())
                 .email(request.getEmail())
                 .dni(request.getDni())

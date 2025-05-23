@@ -1,8 +1,16 @@
 package org.example.final_metodologia_backend.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.example.final_metodologia_backend.entities.enums.Estado;
 
+@Entity
+@Table(name = "detalle") // ANTES NO ESTABAN ESTAS NOTACIONES
+@NoArgsConstructor
+@Getter
+@Setter
 public class Detalle extends Base{
     @OneToOne
     @JoinColumn(name = "producto_id")
@@ -12,7 +20,7 @@ public class Detalle extends Base{
     @JoinColumn(name = "talle_id")
     private Talle talle;
 
-    @OneToMany
+    @ManyToOne // ANTES ERA ONETOMANY
     @JoinColumn(name = "color_id")
     private Color color;
 
