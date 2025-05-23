@@ -17,10 +17,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY="12321567655434578987654562343265473";
 
-    //private static final String SECRET_KEY = "Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MDEyMw=="; // Clave Base64 válida
-
+    private static final String SECRET_KEY = "dHVTdXBlclNlY3JldGFDbGF2ZURlQWxNZW5vczMyQ2FyYWN0ZXJlc3M=";
     public String getToken(UserDetails usuario) {
         return getToken(new HashMap<>(), usuario);
     }
