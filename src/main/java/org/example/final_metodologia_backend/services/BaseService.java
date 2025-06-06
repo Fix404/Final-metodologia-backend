@@ -38,7 +38,7 @@ public abstract class BaseService<E extends Base, ID extends Serializable> {
         try{
             return baseRepository.save(entity);
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new Exception("Error al guardar la entidad", e);
         }
 
     }

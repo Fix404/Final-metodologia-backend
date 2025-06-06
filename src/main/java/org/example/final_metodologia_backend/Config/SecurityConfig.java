@@ -4,6 +4,7 @@ import org.example.final_metodologia_backend.jwt.JwtAutenticationFilter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,7 +24,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-      return http
+      /*return http
               .csrf(csrf -> csrf.disable())
               .authorizeHttpRequests(authRequest->
                       authRequest
@@ -35,6 +36,22 @@ public class SecurityConfig {
                               .sessionCreationPolicy((SessionCreationPolicy.STATELESS)))
               .authenticationProvider(authProvider)
               .addFilterBefore(jwtAutenticationFilter, UsernamePasswordAuthenticationFilter.class)
-              .build();
+              .build();*/
+        return http
+                .cors(cors -> cors.configure(http))
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authRequest ->
+                        authRequest
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/detalle/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .sessionManagement(sessionManager ->
+                        sessionManager
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authProvider)
+                .addFilterBefore(jwtAutenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+        }
     }
-}
+

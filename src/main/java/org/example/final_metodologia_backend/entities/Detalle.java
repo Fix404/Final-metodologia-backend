@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.final_metodologia_backend.entities.enums.Estado;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:5173") //HCER GLOBAL
 @Entity
 @Table(name = "detalle") // ANTES NO ESTABAN ESTAS NOTACIONES
 @NoArgsConstructor
