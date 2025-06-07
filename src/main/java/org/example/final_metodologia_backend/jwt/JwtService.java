@@ -24,6 +24,10 @@ public class JwtService {
     }
 
     private String getToken(Map<String,Object>extraClaims , UserDetails usuario) {
+        extraClaims.put("rol", usuario.getAuthorities()
+                .stream()
+                .map(rol -> rol.getAuthority())
+                .toList());
 
     return Jwts
             .builder()
