@@ -27,6 +27,26 @@ public class JwtAutenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+
+        // Excluye los métodos GET en las rutas públicas
+        if (method.equals("GET") && (
+                path.startsWith("/productos")
+                        || path.startsWith("/categorias")
+                        || path.startsWith("/detalle")
+                        || path.startsWith("/colores")
+                        || path.startsWith("/talles")
+                        || path.startsWith("/imagenes")
+                        || path.startsWith("/precios")
+                        || path.startsWith("/descuentos")
+                        || path.startsWith("/localidades"))) {
+
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         final String token = getTokenFromRequest(request);
         final String nombre;
 

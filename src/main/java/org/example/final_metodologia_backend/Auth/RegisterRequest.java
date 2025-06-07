@@ -12,8 +12,6 @@ import org.example.final_metodologia_backend.entities.Direccion;
 @AllArgsConstructor
 public class RegisterRequest {
     String nombre;
-    String contrasenia;
-    Direccion direccion;
     String email;
-    Long dni;
+    String contrasenia;
 }
