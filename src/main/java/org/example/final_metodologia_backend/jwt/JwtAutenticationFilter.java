@@ -31,6 +31,12 @@ public class JwtAutenticationFilter extends OncePerRequestFilter {
         String path = request.getRequestURI();
         String method = request.getMethod();
 
+        if (path.startsWith("/auth")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
         // Excluye los métodos GET en las rutas públicas
         if (method.equals("GET") && (
                 path.startsWith("/productos")
@@ -48,24 +54,28 @@ public class JwtAutenticationFilter extends OncePerRequestFilter {
         }
 
         final String token = getTokenFromRequest(request);
-        final String nombre;
+        final String email = jwtService.getUsernameFromToken(token);
+        System.out.println("Token JWT: " + token);
+
+        System.out.println("Email extraído del token: " + email);
+
 
         if (token == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        nombre = jwtService.getUsernameFromToken(token);
-        System.out.println(nombre);
-        if(nombre!=null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails=userDetailsService.loadUserByUsername(nombre);
+
+        System.out.println(email);
+        if(email!=null && SecurityContextHolder.getContext().getAuthentication() == null){
+            UserDetails userDetails=userDetailsService.loadUserByUsername(email);
 
             if(jwtService.isTokenValid(token, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities());
-                System.out.println(nombre);
+                System.out.println(email);
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
