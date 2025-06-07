@@ -4,11 +4,20 @@ import org.example.final_metodologia_backend.entities.Detalle;
 import org.example.final_metodologia_backend.repositories.DetalleRepository;
 import org.springframework.stereotype.Service;
 
-@Service
-public class DetalleService extends BaseService<Detalle, Long>{
-    private DetalleRepository detalleRepository;
+import java.util.List;
 
-    public DetalleService(DetalleRepository detalleRepository){
+@Service
+public class DetalleService extends BaseService<Detalle, Long> {
+
+    private final DetalleRepository detalleRepository;
+
+    public DetalleService(DetalleRepository detalleRepository) {
         super(detalleRepository);
+        this.detalleRepository = detalleRepository; // Agregamos esta linea
+    }
+
+    public List<Detalle> obtenerDetallesPorProductoId(Long productoId) {
+        return detalleRepository.findByProductoId(productoId);
     }
 }
+

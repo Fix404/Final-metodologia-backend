@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Getter
 @Setter
 public class Detalle extends Base{
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "producto_id")
     private Producto producto;
 
