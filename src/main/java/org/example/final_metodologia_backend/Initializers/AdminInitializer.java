@@ -1,4 +1,4 @@
-package org.example.final_metodologia_backend.adminInitializer;
+package org.example.final_metodologia_backend.Initializers;
 
 import org.example.final_metodologia_backend.entities.Usuario;
 import org.example.final_metodologia_backend.entities.enums.Rol;

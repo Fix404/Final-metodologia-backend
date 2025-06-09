@@ -20,6 +20,15 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
         return ResponseEntity.ok(entities);
     }
 
+    @GetMapping("/activos")
+    public ResponseEntity<List<E>> listarActivos() {
+        try {
+            return ResponseEntity.ok(service.listarActivos());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @GetMapping("/{id}")
     public Optional<E> buscarPorId(@PathVariable ID id) throws Exception {
         return service.buscarPorId(id);
@@ -40,5 +49,15 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable ID id) throws Exception {
         service.eliminar(id);
+    }
+
+    @PutMapping("/baja/{id}")
+    public ResponseEntity<Void> darDeBaja(@PathVariable ID id) {
+        try {
+            service.darDeBaja(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }

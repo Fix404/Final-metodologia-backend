@@ -29,6 +29,9 @@ public class Usuario extends Base implements UserDetails {
     private String nombre;
 
     @Column
+    private String apellido;
+
+    @Column
     private String contrasenia;
 
     @Column

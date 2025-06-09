@@ -23,6 +23,17 @@ public abstract class BaseService<E extends Base, ID extends Serializable> {
         }
     }
 
+    // ----------------- NUEVO ----------------------
+    @Transactional
+    public List<E> listarActivos() throws Exception {
+        try {
+            return baseRepository.findByActivoTrue();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
     @Transactional
     public Optional<E> buscarPorId(ID id) throws Exception {
         try{
@@ -62,4 +73,22 @@ public abstract class BaseService<E extends Base, ID extends Serializable> {
         }
 
     }
+
+    // ----------------- NUEVO ----------------------
+    @Transactional
+    public void darDeBaja(ID id) throws Exception {
+        try {
+            Optional<E> entityOptional = baseRepository.findById(id);
+            if (entityOptional.isPresent()) {
+                E entity = entityOptional.get();
+                entity.setActivo(false);
+                baseRepository.save(entity);
+            } else {
+                throw new Exception("Entidad no encontrada para id: " + id);
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

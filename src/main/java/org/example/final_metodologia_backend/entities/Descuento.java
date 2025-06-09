@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="descuentos")
 @NoArgsConstructor
@@ -14,16 +16,17 @@ import lombok.Setter;
 @Setter
 public class Descuento extends Base{
     @Column
-    private String fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column
-    private String fechaFin;
+    private LocalDate fechaFin;
 
     @Column
     private Double porcentaje;
 
-    public Descuento(String fechaInicio, String fechaFin) {
+    public Descuento(LocalDate fechaInicio, LocalDate fechaFin, Double porcentaje) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.porcentaje = porcentaje;
     }
 }

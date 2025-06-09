@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
+
 import java.io.Serializable;
 
 @Data
@@ -14,4 +15,7 @@ public abstract class Base implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     protected Long id;
+
+    protected boolean activo = true;
+
 }
