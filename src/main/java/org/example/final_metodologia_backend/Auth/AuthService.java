@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.final_metodologia_backend.entities.Usuario;
 import org.example.final_metodologia_backend.entities.enums.Rol;
 import org.example.final_metodologia_backend.repositories.UsuarioRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,13 +32,19 @@ public class AuthService {
     }
 
     public AuthResponse register(RegisterRequest request) {
-        Usuario usuario = Usuario.builder().
-                nombre(request.getNombre())
+
+        if (usuarioRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
+
+        Usuario usuario = Usuario.builder()
+                .nombre(request.getNombre())
                 .contrasenia(passwordEncoder.encode(request.getContrasenia()))
                 .email(request.getEmail())
                 .rol(Rol.CLIENTE)
                 .build();
-        usuarioRepository.save(usuario);
+            usuario = usuarioRepository.save(usuario);
+
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(usuario))
