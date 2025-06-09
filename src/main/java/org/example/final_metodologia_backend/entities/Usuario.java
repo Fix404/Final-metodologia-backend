@@ -1,5 +1,6 @@
 package org.example.final_metodologia_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.final_metodologia_backend.entities.enums.Rol;
@@ -45,6 +46,7 @@ public class Usuario extends Base implements UserDetails {
     private Long dni;
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(rol.name()));
     }

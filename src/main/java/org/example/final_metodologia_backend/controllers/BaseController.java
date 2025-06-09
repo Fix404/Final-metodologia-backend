@@ -40,7 +40,7 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
         return ResponseEntity.ok(entidadCreada);
     }
 
-    @PutMapping()
+    @PutMapping("/{id}")
     public ResponseEntity<E> actualizar(@RequestBody E entity) throws Exception {
         E entidadAct = service.actualizar(entity);
         return ResponseEntity.ok(entidadAct);
