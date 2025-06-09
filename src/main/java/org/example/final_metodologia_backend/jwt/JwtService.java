@@ -33,6 +33,7 @@ public class JwtService {
             .builder()
             .setClaims(extraClaims)
             .setSubject(usuario.getUsername())
+           // .claim("role", usuario.getRol().name())
             .setIssuedAt(new Date(System.currentTimeMillis()))
             //Tiempo que dura el token, en este caso es de 24 minutos
             .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))

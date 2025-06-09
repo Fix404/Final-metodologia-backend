@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.GET,
                                         "/productos/**",
                                         "/categorias/**",
