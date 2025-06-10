@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.example.final_metodologia_backend.entities.Usuario;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,11 @@ public class JwtService {
     }
 
     private String getToken(Map<String,Object>extraClaims , UserDetails usuario) {
+
+        if (usuario instanceof Usuario usuarioConId) {
+            extraClaims.put("id", usuarioConId.getId());
+        }
+
         extraClaims.put("rol", usuario.getAuthorities()
                 .stream()
                 .map(rol -> rol.getAuthority())
@@ -33,10 +39,9 @@ public class JwtService {
             .builder()
             .setClaims(extraClaims)
             .setSubject(usuario.getUsername())
-           // .claim("role", usuario.getRol().name())
             .setIssuedAt(new Date(System.currentTimeMillis()))
-            //Tiempo que dura el token, en este caso es de 24 minutos
-            .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+            //Tiempo que dura el token, en este caso es de 1 hora
+            .setExpiration(new Date(System.currentTimeMillis()+1000*60*60))
             .signWith(getKey(), SignatureAlgorithm.HS256)
             .compact();
     }
@@ -48,6 +53,10 @@ public class JwtService {
 
     public String getUsernameFromToken(String token) {
         return getClaim(token, Claims::getSubject);
+    }
+
+    public Long getIdFromToken(String token) {
+        return getClaim(token, claims -> claims.get("id", Long.class));
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {

@@ -12,6 +12,7 @@ import org.example.final_metodologia_backend.entities.Direccion;
 @AllArgsConstructor
 public class RegisterRequest {
     String nombre;
+    String apellido;
     String email;
     String contrasenia;
 }
