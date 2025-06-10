@@ -95,7 +95,7 @@ public class DataInitializer implements CommandLineRunner {
             Producto p2 = new Producto(
                     "Zapatillas Running",
                     "Zapatillas livianas con buena amortiguación.",
-                    categoria1,
+                    categoria2,
                     imagen1,
                     descuento2,
                     TipoProducto.CALZADO,
@@ -113,6 +113,50 @@ public class DataInitializer implements CommandLineRunner {
                     SexoProducto.MUJER
             );
             entityManager.persist(p3);
+
+            Producto p4 = new Producto(
+                    "Zapatillas Puma Suede Classic",
+                    "Zapatillas urbanas",
+                    categoria1,
+                    null,
+                    null,
+                    TipoProducto.CALZADO,
+                    SexoProducto.MUJER
+            );
+            entityManager.persist(p4);
+
+            Producto p5 = new Producto(
+                    "Campera Nike ProSport",
+                    "Campera deportiva",
+                    categoria2,
+                    null,
+                    null,
+                    TipoProducto.ROPA,
+                    SexoProducto.UNISEX
+            );
+            entityManager.persist(p5);
+
+            Producto p6 = new Producto(
+                    "Corpiño deportivo",
+                    "Corpiño con tecnología dry-fit",
+                    categoria2,
+                    null,
+                    null,
+                    TipoProducto.ROPA,
+                    SexoProducto.MUJER
+            );
+            entityManager.persist(p6);
+
+            Producto p7 = new Producto(
+                    "Camiseta Argentina",
+                    "Camiseta de la Selección",
+                    categoria2,
+                    null,
+                    null,
+                    TipoProducto.ROPA,
+                    SexoProducto.UNISEX
+            );
+            entityManager.persist(p7);
 
             Detalle detalle1 = new Detalle(
                     talle1,
