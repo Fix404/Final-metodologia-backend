@@ -22,12 +22,12 @@ public class Direccion extends Base{
     private String provincia;
 
     @Column
-    private Integer altura;
+    private Integer numero;
 
-    public Direccion(Localidad localidad, String calle, String provincia, Integer altura) {
+    public Direccion(Localidad localidad, String calle, String provincia, Integer numero) {
         this.localidad = localidad;
         this.calle = calle;
         this.provincia = provincia;
-        this.altura = altura;
+        this.numero = numero;
     }
 }
