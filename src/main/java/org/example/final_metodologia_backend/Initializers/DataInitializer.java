@@ -81,12 +81,42 @@ public class DataInitializer implements CommandLineRunner {
             entityManager.persist(descuento1);
             entityManager.persist(descuento2);
 
-            Localidad localidad1 = new Localidad("Las Heras", 5503);
+            Localidad localidad1 = new Localidad("Mendoza", 5500);
             Localidad localidad2 = new Localidad("Godoy Cruz", 5501);
-            Localidad localidad3 = new Localidad("Mendoza", 5500);
+            Localidad localidad3 = new Localidad("Las Heras", 5503);
+            Localidad localidad4 = new Localidad("Guaymallén", 5507);
+            Localidad localidad5 = new Localidad("Luján de Cuyo", 5517);
+            Localidad localidad6 = new Localidad("Maipú", 5515);
+            Localidad localidad7 = new Localidad("San Rafael", 5600);
+            Localidad localidad8 = new Localidad("General Alvear", 5620);
+            Localidad localidad9 = new Localidad("Tunuyán", 5577);
+            Localidad localidad10 = new Localidad("Rivadavia", 5525);
+            Localidad localidad11 = new Localidad("Junín", 5540);
+            Localidad localidad12 = new Localidad("San Martín", 5570);
+            Localidad localidad13 = new Localidad("Santa Rosa", 5580);
+            Localidad localidad14 = new Localidad("Malargüe", 5613);
+            Localidad localidad15 = new Localidad("La Paz", 5590);
+            Localidad localidad16 = new Localidad("Tupungato", 5585);
+            Localidad localidad17 = new Localidad("Lavalle", 5569);
+            Localidad localidad18 = new Localidad("San Carlos", 5593);
             entityManager.persist(localidad1);
             entityManager.persist(localidad2);
             entityManager.persist(localidad3);
+            entityManager.persist(localidad4);
+            entityManager.persist(localidad5);
+            entityManager.persist(localidad6);
+            entityManager.persist(localidad7);
+            entityManager.persist(localidad8);
+            entityManager.persist(localidad9);
+            entityManager.persist(localidad10);
+            entityManager.persist(localidad11);
+            entityManager.persist(localidad12);
+            entityManager.persist(localidad13);
+            entityManager.persist(localidad14);
+            entityManager.persist(localidad15);
+            entityManager.persist(localidad16);
+            entityManager.persist(localidad17);
+            entityManager.persist(localidad18);
 
             Direccion d1 = new Direccion(localidad1, "Perú", "Mendoza", 1125);
             Direccion d2 = new Direccion(localidad2, "Paso de los Andes", "Mendoza", 255);
@@ -289,10 +319,10 @@ public class DataInitializer implements CommandLineRunner {
             entityManager.persist(detalle36);
 
 
-            Detalle detalle37 = new Detalle(talle36, 16, colorVerde, precio1, Estado.DISPONIBLE, p4);
-            Detalle detalle38 = new Detalle(talle37, 11, colorVerde, precio2, Estado.DISPONIBLE, p4);
-            Detalle detalle39 = new Detalle(talle38, 15, colorVerde, precio1, Estado.DISPONIBLE, p4);
-            Detalle detalle40 = new Detalle(talle39, 13, colorVerde, precio2, Estado.DISPONIBLE, p4);
+            Detalle detalle37 = new Detalle(talle36, 16, colorRojo, precio1, Estado.DISPONIBLE, p4);
+            Detalle detalle38 = new Detalle(talle37, 11, colorRojo, precio2, Estado.DISPONIBLE, p4);
+            Detalle detalle39 = new Detalle(talle38, 15, colorRojo, precio1, Estado.DISPONIBLE, p4);
+            Detalle detalle40 = new Detalle(talle39, 13, colorNegro, precio2, Estado.DISPONIBLE, p4);
             Detalle detalle41 = new Detalle(talle36, 8, colorGris, precio1, Estado.DISPONIBLE, p4);
             Detalle detalle42 = new Detalle(talle37, 7, colorGris, precio2, Estado.DISPONIBLE, p4);
             Detalle detalle43 = new Detalle(talle38, 6, colorGris, precio1, Estado.DISPONIBLE, p4);
