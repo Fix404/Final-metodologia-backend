@@ -3,6 +3,9 @@ package org.example.final_metodologia_backend.services;
 import jakarta.transaction.Transactional;
 import org.example.final_metodologia_backend.entities.Base;
 import org.example.final_metodologia_backend.repositories.BaseRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.Serializable;
 import java.util.List;
@@ -77,19 +80,14 @@ public abstract class BaseService<E extends Base, ID extends Serializable> {
 
     // ----------------- NUEVO ----------------------
     @Transactional
-    public void darDeBaja(ID id) throws Exception {
-        try {
-            Optional<E> entityOptional = baseRepository.findById(id);
-            if (entityOptional.isPresent()) {
-                E entity = entityOptional.get();
-                entity.setActivo(false);
-                baseRepository.save(entity);
-            } else {
-                throw new Exception("Entidad no encontrada para id: " + id);
-            }
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
+    public void cambiarEstado(ID id, boolean activo) throws Exception {
+        Optional<E> entityOptional = baseRepository.findById(id);
+        if (entityOptional.isPresent()) {
+            E entity = entityOptional.get();
+            entity.setActivo(activo);
+            baseRepository.save(entity);
+        } else {
+            throw new Exception("Entidad no encontrada");
         }
     }
-
 }
