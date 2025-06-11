@@ -1,5 +1,6 @@
 package org.example.final_metodologia_backend.controllers;
 
+import jakarta.transaction.Transactional;
 import org.example.final_metodologia_backend.entities.Base;
 import org.example.final_metodologia_backend.services.BaseService;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 public abstract class BaseController<E extends Base, ID extends Serializable> {
     protected BaseService<E, ID> service;
+
 
     public BaseController(BaseService<E, ID> service) {this.service=service;}
 
@@ -51,13 +53,11 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
         service.eliminar(id);
     }
 
-    @PutMapping("/baja/{id}")
-    public ResponseEntity<Void> darDeBaja(@PathVariable ID id) {
-        try {
-            service.darDeBaja(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
+    @PutMapping("/estado/{id}")
+    public ResponseEntity<Void> cambiarEstado(@PathVariable ID id, @RequestParam boolean activo) throws Exception {
+        service.cambiarEstado(id, activo);
+        return ResponseEntity.noContent().build();
     }
+
+
 }
