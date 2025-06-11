@@ -30,13 +30,13 @@ public class DataInitializer implements CommandLineRunner {
             entityManager.persist(categoria1);
             entityManager.persist(categoria2);
 
-            Imagen imagen1 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602973/images_dnx9yz.jpg", "Descripcion 1");
-            Imagen imagen2 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749603017/images_1_edkgr3.jpg", "Descripcion 2");
+            Imagen imagen1 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749645263/NI_DD1992-010-1_jpuha7.jpg", "Descripcion 1");
+            Imagen imagen2 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749645263/ADFZ5622-1_iltwrc.jpg", "Descripcion 2");
             Imagen imagen3 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749605002/zapatillas-nike-air-max-systm-negra-510010dm9537001-1_elsnan.jpg", "Descripcion 3");
-            Imagen imagen4 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602954/descarga_1_ybnohb.jpg", "Descripcion 4");
-            Imagen imagen5 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602972/descarga_3_gieexi.jpg", "Descripcion 5");
-            Imagen imagen6 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602972/descarga_2_lwphr4.jpg", "Descripcion 6");
-            Imagen imagen7 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749603039/images_2_oanobl.jpg", "Descripcion 7");
+            Imagen imagen4 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749645264/zapatillas-puma-suede-classic-xxi-bordo-56007729-640010388981006-1_xs5d5b.jpg", "Descripcion 4");
+            Imagen imagen5 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749645263/campera-con-capucha-nike-sportswear-club-fleece-negra-510020bv2645063-1_z9lcaz.jpg", "Descripcion 5");
+            Imagen imagen6 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749645263/top-puma-de-entrenamiento-pwerbreathe-run-mujer-rosa-640020525074016-1_1_njhkhm.jpg", "Descripcion 6");
+            Imagen imagen7 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749645263/remera-frente-arg-negra-9bc2ab25b0a0cfa97417047581112366-640-0_mfanqf.jpg", "Descripcion 7");
             entityManager.persist(imagen1);
             entityManager.persist(imagen2);
             entityManager.persist(imagen3);
