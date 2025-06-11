@@ -30,10 +30,22 @@ public class DataInitializer implements CommandLineRunner {
             entityManager.persist(categoria1);
             entityManager.persist(categoria2);
 
-            Imagen imagen1 = new Imagen("URL imagen 1", "Descripcion 1");
-            Imagen imagen2 = new Imagen("URL imagen 2", "Descripcion 2");
+            Imagen imagen1 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602973/images_dnx9yz.jpg", "Descripcion 1");
+            Imagen imagen2 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749603017/images_1_edkgr3.jpg", "Descripcion 2");
+            Imagen imagen3 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749605002/zapatillas-nike-air-max-systm-negra-510010dm9537001-1_elsnan.jpg", "Descripcion 3");
+            Imagen imagen4 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602954/descarga_1_ybnohb.jpg", "Descripcion 4");
+            Imagen imagen5 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602972/descarga_3_gieexi.jpg", "Descripcion 5");
+            Imagen imagen6 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749602972/descarga_2_lwphr4.jpg", "Descripcion 6");
+            Imagen imagen7 = new Imagen("https://res.cloudinary.com/dapt6ypui/image/upload/v1749603039/images_2_oanobl.jpg", "Descripcion 7");
+
             entityManager.persist(imagen1);
             entityManager.persist(imagen2);
+            entityManager.persist(imagen3);
+            entityManager.persist(imagen4);
+            entityManager.persist(imagen5);
+            entityManager.persist(imagen6);
+            entityManager.persist(imagen7);
+
 
             Color color1 = new Color("Negro");
             Color color2 = new Color("Azul");
@@ -45,12 +57,12 @@ public class DataInitializer implements CommandLineRunner {
             Descuento descuento1 = new Descuento(
                     LocalDate.of(2025, 6, 1),
                     LocalDate.of(2025, 6, 30),
-                    15.0
+                    0.15
             );
             Descuento descuento2 = new Descuento(
                     LocalDate.of(2025, 6, 6),
                     LocalDate.of(2025, 6, 28),
-                    20.0
+                    0.20
             );
             entityManager.persist(descuento1);
             entityManager.persist(descuento2);
@@ -71,6 +83,10 @@ public class DataInitializer implements CommandLineRunner {
 
             Precio precio1 = new Precio(53800.0, 62900.0);
             Precio precio2 = new Precio(72500.0, 75300.0);
+            Precio precio3 = new Precio(53800.0, 62900.0);
+            Precio precio4 = new Precio(72500.0, 75300.0);
+            Precio precio5 = new Precio(53800.0, 62900.0);
+            Precio precio6 = new Precio(72500.0, 75300.0);
             entityManager.persist(precio1);
             entityManager.persist(precio2);
 
@@ -85,7 +101,7 @@ public class DataInitializer implements CommandLineRunner {
                     "Remera DryFit",
                     "Remera de entrenamiento de poliéster.",
                     categoria2,
-                    imagen2,
+                    imagen1,
                     descuento1,
                     TipoProducto.ROPA,
                     SexoProducto.UNISEX
@@ -93,13 +109,13 @@ public class DataInitializer implements CommandLineRunner {
             entityManager.persist(p1);
 
             Producto p2 = new Producto(
-                    "Zapatillas Running",
+                    "Zapatillas Adidas Running",
                     "Zapatillas livianas con buena amortiguación.",
                     categoria2,
-                    imagen1,
+                    imagen2,
                     descuento2,
                     TipoProducto.CALZADO,
-                    SexoProducto.HOMBRE
+                    SexoProducto.MUJER
             );
             entityManager.persist(p2);
 
@@ -107,10 +123,10 @@ public class DataInitializer implements CommandLineRunner {
                     "Zapatillas Nike Air Max",
                     "Zapatillas urbanas",
                     categoria1,
-                    null,
+                    imagen3,
                     null,
                     TipoProducto.CALZADO,
-                    SexoProducto.MUJER
+                    SexoProducto.HOMBRE
             );
             entityManager.persist(p3);
 
@@ -118,10 +134,10 @@ public class DataInitializer implements CommandLineRunner {
                     "Zapatillas Puma Suede Classic",
                     "Zapatillas urbanas",
                     categoria1,
-                    null,
+                    imagen4,
                     null,
                     TipoProducto.CALZADO,
-                    SexoProducto.MUJER
+                    SexoProducto.UNISEX
             );
             entityManager.persist(p4);
 
@@ -129,7 +145,7 @@ public class DataInitializer implements CommandLineRunner {
                     "Campera Nike ProSport",
                     "Campera deportiva",
                     categoria2,
-                    null,
+                    imagen5,
                     null,
                     TipoProducto.ROPA,
                     SexoProducto.UNISEX
@@ -140,7 +156,7 @@ public class DataInitializer implements CommandLineRunner {
                     "Corpiño deportivo",
                     "Corpiño con tecnología dry-fit",
                     categoria2,
-                    null,
+                    imagen6,
                     null,
                     TipoProducto.ROPA,
                     SexoProducto.MUJER
@@ -151,7 +167,7 @@ public class DataInitializer implements CommandLineRunner {
                     "Camiseta Argentina",
                     "Camiseta de la Selección",
                     categoria2,
-                    null,
+                    imagen7,
                     null,
                     TipoProducto.ROPA,
                     SexoProducto.UNISEX
