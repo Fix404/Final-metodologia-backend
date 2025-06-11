@@ -23,4 +23,19 @@ public class UsuarioService extends BaseService<Usuario, Long> {
         usuario.setContrasenia(contraseniaEncriptada);
         return repository.save(usuario);
     }
+
+    public Usuario cambiarContrasenia(Long id, String contraseniaActual, String contraseniaNueva) {
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // Validar contraseña actual
+        if (!passwordEncoder.matches(contraseniaActual, usuario.getContrasenia())) {
+            throw new RuntimeException("La contraseña actual es incorrecta");
+        }
+
+        // Encriptar y actualizar nueva contraseña
+        usuario.setContrasenia(passwordEncoder.encode(contraseniaNueva));
+        return repository.save(usuario);
+    }
+
 }
