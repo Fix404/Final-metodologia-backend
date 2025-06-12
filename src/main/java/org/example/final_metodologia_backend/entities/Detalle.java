@@ -22,7 +22,7 @@ public class Detalle extends Base{
     @JoinColumn(name = "talle_id")
     private Talle talle;
 
-    @ManyToOne // ANTES ERA ONETOMANY
+    @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
 
@@ -31,13 +31,13 @@ public class Detalle extends Base{
     private Precio precio;
 
     @Column
-    private Number stock;
+    private Integer stock;
 
     @Column
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    public Detalle(Talle talle, Number stock, Color color, Precio precio, Estado estado, Producto producto) {
+    public Detalle(Talle talle, Integer stock, Color color, Precio precio, Estado estado, Producto producto) {
         this.talle = talle;
         this.stock = stock;
         this.color = color;

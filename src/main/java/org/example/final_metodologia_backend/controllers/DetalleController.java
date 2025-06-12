@@ -1,12 +1,12 @@
 package org.example.final_metodologia_backend.controllers;
 
+import org.example.final_metodologia_backend.dto.CreateDetalleDto;
+import org.example.final_metodologia_backend.dto.DetalleDto;
 import org.example.final_metodologia_backend.entities.Detalle;
 import org.example.final_metodologia_backend.services.DetalleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +31,39 @@ public class DetalleController extends BaseController<Detalle, Long> {
 
         return ResponseEntity.ok(detalles);
     }
+
+    @GetMapping("/dto")
+    public ResponseEntity<List<DetalleDto>> listarDetallesDTO() {
+        try {
+            List<DetalleDto> detallesDTO = detalleService.listarDetallesDTO();
+            return ResponseEntity.ok(detallesDTO);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/dto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<DetalleDto> crearDetalle(@RequestBody CreateDetalleDto createDetalleDto) {
+        try {
+            DetalleDto nuevoDetalle = detalleService.crearDetalle(createDetalleDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevoDetalle);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<DetalleDto> actualizarDetalle(@PathVariable Long id, @RequestBody CreateDetalleDto createDetalleDto) {
+        try {
+            DetalleDto detalleActualizado = detalleService.actualizarDetalle(id, createDetalleDto);
+            return ResponseEntity.ok(detalleActualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
 }
 
 
