@@ -125,12 +125,12 @@ public class DataInitializer implements CommandLineRunner {
             entityManager.persist(d2);
             entityManager.persist(d3);
 
-            Precio precio1 = new Precio(53800.0, 62900.0);
-            Precio precio2 = new Precio(72500.0, 75300.0);
-            Precio precio3 = new Precio(61200.0, 68000.0);
-            Precio precio4 = new Precio(47000.0, 55000.0);
-            Precio precio5 = new Precio(80000.0, 89000.0);
-            Precio precio6 = new Precio(90000.0, 102000.0);
+            Precio precio1 = new Precio(5.0, 6.0);
+            Precio precio2 = new Precio(2.0, 4.0);
+            Precio precio3 = new Precio(10.0, 12.0);
+            Precio precio4 = new Precio(15.0, 17.0);
+            Precio precio5 = new Precio(6.0, 7.0);
+            Precio precio6 = new Precio(20.0, 22.0);
             entityManager.persist(precio1);
             entityManager.persist(precio2);
             entityManager.persist(precio3);
