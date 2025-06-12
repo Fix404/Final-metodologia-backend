@@ -31,6 +31,7 @@ public class SecurityConfig {
                         authRequest
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/pay/mp").permitAll()
                                 .requestMatchers(HttpMethod.GET,
                                         "/productos/**",
                                         "/categorias/**",
