@@ -30,6 +30,13 @@ public class UsuarioController extends BaseController<Usuario, Long> {
         this.jwtService = jwtService;
     }
 
+    @PostMapping("/crear")
+    public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario) {
+        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
+    }
+
+
     @PutMapping("/{id}/cambiar-contrasenia")
     public ResponseEntity<?> cambiarContrasenia(@PathVariable Long id, @RequestBody CambioContraseniaDto dto) {
         try {

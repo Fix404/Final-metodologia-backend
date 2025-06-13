@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 public class ProductoCantidad extends Base{
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "detalle_id")
     private Detalle detalle;
 
