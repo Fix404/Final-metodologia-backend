@@ -33,7 +33,8 @@ public class MercadoPagoController {
     public ResponseEntity<Map<String, String>> mp(@RequestBody Map<String, Object> body) throws Exception {
 
         if (body.get("usuarioId") == null || body.get("carrito") == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Datos inválidos: usuarioId y carrito son requeridos."));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Datos inválidos: usuarioId y carrito son requeridos."));
         }
 
         Long usuarioId = Long.valueOf(body.get("usuarioId").toString());
@@ -41,18 +42,30 @@ public class MercadoPagoController {
 
         List<CarritoItemDto> carrito = new ArrayList<>();
 
+        // ✅ Ajustamos la lectura del carrito para coincidir con la estructura del frontend
         for (Map<String, Object> item : carritoData) {
+            if (!item.containsKey("detalle") || !item.containsKey("cantidad")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(Map.of("error", "Cada ítem del carrito debe contener `detalle` y `cantidad`."));
+            }
+
+            Map<String, Object> detalle = (Map<String, Object>) item.get("detalle");
+            if (!detalle.containsKey("id")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(Map.of("error", "El objeto `detalle` debe contener `id`."));
+            }
+
             CarritoItemDto carritoItem = new CarritoItemDto();
-            carritoItem.setDetalleId(Long.valueOf(item.get("detalleId").toString()));
+            carritoItem.setDetalleId(Long.valueOf(detalle.get("id").toString())); // ✅ Extraer `id` correctamente
             carritoItem.setCantidad(Integer.parseInt(item.get("cantidad").toString()));
             carrito.add(carritoItem);
         }
+
         System.out.println("Token de MercadoPago utilizado: " + mercadoPagoAccessToken);
         MercadoPagoConfig.setAccessToken(mercadoPagoAccessToken);
 
         System.out.println("Solicitud recibida en /pay/mp");
 
-        MercadoPagoConfig.setAccessToken(mercadoPagoAccessToken);
         List<PreferenceItemRequest> items = new ArrayList<>();
 
         OrdenCompra ordenCompra = ordenCompraService.generarOrdenCompra(carrito, usuarioId);
@@ -73,12 +86,11 @@ public class MercadoPagoController {
             items.add(item);
         }
 
-        PreferenceBackUrlsRequest backUrls =
-                PreferenceBackUrlsRequest.builder()
-                        .success("https://localhost:5173/paymentSuccess")
-                        .pending("https://localhost:5173/")
-                        .failure("https://localhost:5173/paymentFailure")
-                        .build();
+        PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
+                .success("https://localhost:5173/paymentSuccess")
+                .pending("https://localhost:5173/")
+                .failure("https://localhost:5173/paymentFailure")
+                .build();
 
         List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
         excludedPaymentTypes.add(PreferencePaymentTypeRequest.builder().id("ticket").build());
@@ -97,8 +109,6 @@ public class MercadoPagoController {
 
         PreferenceClient client = new PreferenceClient();
         Preference preference = client.create(preferenceRequest);
-
-        String prefId = preference.getId();
 
         System.out.println("URL de pago: " + preference.getInitPoint());
 
